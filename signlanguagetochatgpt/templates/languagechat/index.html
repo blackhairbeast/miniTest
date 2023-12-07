@@ -1,17 +1,21 @@
 {% load static %}
 {% block extrahead %}
-<link rel="stylesheet" href="{% static 'languagechat/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Mulish:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'languagechat/style_sign.css' %}">
 <script>
     let idNum = 0;
     function addFile(){
         deepCopy();
     }
+    function getFileName(input_ele){
+        myClick(input_ele);
+    }
 
     function deepCopy()  {
       // 'test' node 선택
       const fileModule = document.getElementById('file-module-'+idNum);
-
-
 
       // 노드 복사하기 (deep copy)
       const newNode = fileModule.cloneNode(true);
@@ -21,21 +25,52 @@
       // 복사된 Node id 변경하기
       idNum++;
       newNode.id = 'file-module-' + idNum;
+      newNode.children[0].children[0].children[0].children[1].children[0].children[0].id = 'hidden-file-'+idNum;
+      newNode.children[0].children[0].children[0].children[0].children[0].value = '';
+      newNode.children[0].children[0].children[0].children[0].children[0].id = 'file-name-'+idNum;
 
       // 복사한 노드 붙여넣기
       fileModule.after(newNode);
     }
+
+    
+    function myClick(input_ele){
+        var hidden_id = input_ele.id; // hidden-file-n
+        var nums = hidden_id.split('-');
+        var idnum = nums[2];
+        var output_id = 'file-name-'+idnum; // file-name-n
+
+        var fileTarget = document.getElementById(output_id);
+        var filename = input_ele.files[0].name;        
+        fileTarget.value = filename;
+    }
+    
 </script>
 {% endblock %}
+<body>
 <form action="chat" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <span id="file-module-0">
-        <fieldset>
-            <legend><h1>파일 업로드</h1></legend>
-            <input name="files" type="file">
+        <p><a href='/'><img src='{%static "/image/icon-home.png"%}' id='home'/></a></p>
 
-        </fieldset>
+    <legend><h1>파일 업로드</h1></legend> 
+    <fieldset>      
+    <span id="file-module-0">
+        
+        <table>
+            <tr>
+        <td><input type='text' id='file-name-0' placeholder="첨부파일"></td>
+            <td><label id='input-file-label'>파일 첨부<input name="files" type='file' id='hidden-file-0' style='display:none' onchange="getFileName(this)"></label></td>
+            </tr>
+        </table>
+
+    
     </span>
-    <button onclick="addFile()" type="button">파일 추가 </button>
-    <div><input type="submit" value="ChatGPT에게 수어로 문의하기"></div>
+    </fieldset>
+    <table id='btns'>
+        <tr>
+    <td><button onclick="addFile()" type="button">파일 추가 </button></td>
+    <td><div><input id='signlan-gpt' type="submit" value="ChatGPT에게 수어로 문의하기"></div></td>
+        </tr>
+    </table>
 </form>
+</body>

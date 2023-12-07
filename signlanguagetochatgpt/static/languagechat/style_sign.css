@@ -1,0 +1,93 @@
+/* chatgpt */
+/* style.css */
+
+body {
+    font-family: "Gowun Dodum", "Mulish";
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form {
+    max-width: 400px;
+    height: auto;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+button, #signlan-gpt {
+    background-color: #16df7e;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#result{
+    width: 350px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+
+#btns{
+    padding-top: 15px;
+    display :inline-block;
+    
+}
+
+/* input[name="files"]{
+    padding:10px;
+    width: auto;
+    text-align: center;
+} */
+
+span{
+    display :inline-block;
+    padding: 3px;
+}
+
+#input-file-label{
+    padding: 4px 10px;
+    background-color:rgb(129, 132, 145);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+#home{
+    width:20px;
+    height: 20px;
+    float: left;
+    position: relative;
+    top: -15px;
+}
+
+fieldset{
+    padding: 6px;
+}
+
+/* #answer{
+    text-decoration: underline;
+} */
